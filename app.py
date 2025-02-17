@@ -39,7 +39,7 @@ def chat_bot(user_query):
 
 # ------ UI ------
 
-st.title("Aptos Chatbot")
+st.title("Scrappy Chatbot")
 st.markdown("Ask a question about the website you added!")
 
 url = st.text_input("Enter the URL of the website you want to scrape:")
