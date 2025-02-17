@@ -39,7 +39,8 @@ def chat_bot(user_query):
 
 # ------ UI ------
 
-st.title("Scrappy Chatbot")
+st.set_page_config(page_title="Scrappy", page_icon="👾")
+st.title("🤖Scrappy Chatbot")
 st.markdown("Ask a question about the website you added!")
 
 url = st.text_input("Enter the URL of the website you want to scrape:")
