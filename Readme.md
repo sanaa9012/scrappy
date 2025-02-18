@@ -18,8 +18,8 @@ This project is a **Retrieval-Augmented Generation (RAG)** chatbot that extracts
 ## Installation
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
-cd aptos-chatbot
+git clone https://github.com/sanaa9012/scrappy.git
+cd scrappy
 ```
 
 ### **2. Install Dependencies**
