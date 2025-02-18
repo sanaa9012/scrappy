@@ -57,7 +57,8 @@ if st.button("Ask"):
     if user_query:
         with st.spinner("Thinking..."):
             response = chat_bot(user_query)
-            st.success(response)
+            st.success("Response:")
+            st.write(response)
             
     else:
         st.warning("Please enter a question!")
