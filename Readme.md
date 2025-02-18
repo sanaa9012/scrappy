@@ -15,37 +15,44 @@ This project is a **Retrieval-Augmented Generation (RAG)** chatbot that extracts
 ---
 ## **Setup Instructions**
 
-### **1. Install Dependencies**
+## Installation
+### 1. Clone the Repository
+```bash
+git clone <your-repo-url>
+cd aptos-chatbot
+```
+
+### **2. Install Dependencies**
 ```sh
 pip install -r requirements.txt
 ```
 
-### **2. Environment Variables**
+### **3. Environment Variables**
 Create a `.env` file and add:
 ```sh
 GOOGLE_API_KEY=your_google_api_key
 APTOS_WEBSITE_URL=https://aptosfoundation.org
 ```
 
-### **3. Web Scraping (Data Extraction)**
+### **4. Web Scraping (Data Extraction)**
 The project scrapes content from the **Aptos Foundation** website using `BeautifulSoup`
 
-### **4. Text Preprocessing & Chunking**
+### **5. Text Preprocessing & Chunking**
 Once the data is extracted, it is split into smaller chunks using `LangChain`
 
-### **5. Creating & Storing Vector Embeddings**
+### **6. Creating & Storing Vector Embeddings**
 The cleaned and split text is converted into **vector embeddings** using the **Google Generative AI API**, then stored in **FAISS**
 
-### **6. Retrieval & Querying with RAG**
+### **7. Retrieval & Querying with RAG**
 When a user asks a question, the query is embedded and compared against stored vectors in FAISS
 
-### **7. Generating Responses with AI**
+### **8. Generating Responses with AI**
 The retrieved content is passed to **Google Generative AI** for response generation
 
-### **8. Streamlit UI**
+### **9. Streamlit UI**
 The chatbot is deployed with **Streamlit**
 
-### **9. Running the App**
+### **10. Running the App**
 ```sh
 streamlit run app.py
 ```
