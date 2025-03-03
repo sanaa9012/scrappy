@@ -4,8 +4,8 @@
 This project is a **Retrieval-Augmented Generation (RAG)** chatbot that extracts and processes data from the **Aptos Foundation** website. The chatbot allows users to query Aptos-related information and receive AI-generated responses based on scraped content.
 
 ## **Tech Stack**
-- **Backend**: Python, Flask
-- **Web Scraping**: BeautifulSoup, Requests
+- **Language**: Python
+- **Web Scraping**: Reader, Requests
 - **Data Processing**: LangChain (Text Splitting)
 - **Vector Storage**: FAISS (Facebook AI Similarity Search)
 - **Embeddings**: Google Generative AI API
@@ -36,7 +36,7 @@ JINA_API = "https://r.jina.ai"
 ```
 
 ### **4. Web Scraping (Data Extraction)**
-The project scrapes content from the **Aptos Foundation** website using `BeautifulSoup`
+The project scrapes content from the **Aptos Foundation** website using `Reader AI`
 
 ### **5. Text Preprocessing & Chunking**
 Once the data is extracted, it is split into smaller chunks using `LangChain`
