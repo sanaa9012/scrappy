@@ -1,24 +1,36 @@
-import streamlit as st
-import requests
-from bs4 import BeautifulSoup
-from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.vectorstores import FAISS 
 import os 
-import google.generativeai as genai
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+import requests
+import streamlit as st
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+import google.generativeai as genai
+from langchain_community.vectorstores import FAISS 
+from langchain.text_splitter import CharacterTextSplitter
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # url = 'https://aptosfoundation.org/'
+JINA_API = os.getenv("JINA_API")
 
 @st.cache_data
 def scrap_site(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
-    return soup.get_text(separator=" ", strip=True)
+    raw_text = soup.get_text(separator=" ", strip=True)
+    processed_text = process_text_with_jina(raw_text)
+    return processed_text
 
+def process_text_with_jina(text):
+    payload = {"input":text, "task": "text-processing"}
+    response = requests.get(f"{JINA_API}/{url}")
+    
+    if response.status_code == 200:
+        return response.json().get("output", "no output recieved")
+    else:
+        return f"Error: {response.text}"
+    
 @st.cache_resource
 def get_vector_store(text):
     text_splitter = CharacterTextSplitter(chunk_size = 1000, chunk_overlap = 200)
