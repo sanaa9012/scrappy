@@ -32,6 +32,7 @@ Create a `.env` file and add:
 ```sh
 GOOGLE_API_KEY=your_google_api_key
 APTOS_WEBSITE_URL=https://aptosfoundation.org
+JINA_API = "https://r.jina.ai"
 ```
 
 ### **4. Web Scraping (Data Extraction)**
