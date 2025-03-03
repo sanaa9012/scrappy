@@ -4,7 +4,7 @@ import streamlit as st
 from dotenv import load_dotenv
 import google.generativeai as genai
 from langchain_community.vectorstores import FAISS 
-from langchain.text_splitter import CharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 load_dotenv()
@@ -24,7 +24,7 @@ def scrap_site(url):
     
 @st.cache_resource
 def get_vector_store(text):
-    text_splitter = CharacterTextSplitter(chunk_size = 1000, chunk_overlap = 200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 2000, chunk_overlap = 200, separators=["\n\n", "\n", " ", ""])
     text_chunk = text_splitter.split_text(text)
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     vectorstore = FAISS.from_texts(text_chunk, embeddings)
@@ -34,10 +34,10 @@ def get_vector_store(text):
 def chat_bot(user_query):
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001")
     vector_store = FAISS.load_local("vectorstore", embeddings, allow_dangerous_deserialization=True)
-    retrieved_docs = vector_store.similarity_search(user_query, k = 5)
+    retrieved_docs = vector_store.similarity_search(user_query, k = 10)
     context = "\n\n".join([doc.page_content for doc in retrieved_docs])
     model = genai.GenerativeModel("gemini-2.0-flash")
-    response = model.generate_content(f"Context: {context}\nUser: {user_query}")
+    response = model.generate_content(f"Context: {context}\nUser: {user_query}\n" "Provide a detailed response with examples and explanations.")
     return response.text
 
 # ------ UI ------
