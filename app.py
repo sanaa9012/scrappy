@@ -1,7 +1,6 @@
 import os 
 import requests
 import streamlit as st
-from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import google.generativeai as genai
 from langchain_community.vectorstores import FAISS 
@@ -16,20 +15,12 @@ JINA_API = os.getenv("JINA_API")
 
 @st.cache_data
 def scrap_site(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    raw_text = soup.get_text(separator=" ", strip=True)
-    processed_text = process_text_with_jina(raw_text)
-    return processed_text
-
-def process_text_with_jina(text):
-    payload = {"input":text, "task": "text-processing"}
     response = requests.get(f"{JINA_API}/{url}")
     
     if response.status_code == 200:
-        return response.json().get("output", "no output recieved")
+        return response.text
     else:
-        return f"Error: {response.text}"
+        return f"Error: {response.status_code}, {response.text}"
     
 @st.cache_resource
 def get_vector_store(text):
