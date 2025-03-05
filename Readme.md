@@ -1,7 +1,7 @@
-# Aptos Chatbot: Web Scraping & RAG-based Retrieval System
+# Chatbot: Web Scraping & RAG-based Retrieval System
 
 ## Overview
-This project is a **Retrieval-Augmented Generation (RAG)** chatbot that extracts and processes data from the **Aptos Foundation** website. The chatbot allows users to query Aptos-related information and receive AI-generated responses based on scraped content.
+This project is a **Retrieval-Augmented Generation (RAG)** chatbot that extracts and processes data from any website through its URL. The chatbot allows users to query website-related information and receive AI-generated responses based on scraped content.
 
 ## **Tech Stack**
 - **Language**: Python
@@ -31,12 +31,12 @@ pip install -r requirements.txt
 Create a `.env` file and add:
 ```sh
 GOOGLE_API_KEY=your_google_api_key
-APTOS_WEBSITE_URL=https://aptosfoundation.org
+ANY_WEBSITE_URL=(add URL)
 JINA_API = "https://r.jina.ai"
 ```
 
 ### **4. Web Scraping (Data Extraction)**
-The project scrapes content from the **Aptos Foundation** website using `Reader AI`
+The project scrapes content from the website using `Reader AI`
 
 ### **5. Text Preprocessing & Chunking**
 Once the data is extracted, it is split into smaller chunks using `LangChain`
